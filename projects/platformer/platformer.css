@@ -3,7 +3,9 @@ body {
 }
 
 canvas {
-  background-color: lightgray;
+  background-image: url("https://github.com/LandonGamin4421/landonleleaux.github.io/blob/main/Images/dom-m0sd3v-greenbill.gif?raw=true");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 img {

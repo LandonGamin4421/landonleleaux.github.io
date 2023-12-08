@@ -597,6 +597,7 @@ function createCollectable(type, x, y, gravity = 0.1, bounce = 1) {
   }
 }
 
+
 function createProjectile(wallLocation, x, y, width, height) {
   //checking if the player is dead
   if (currentAnimationType === animationTypes.frontDeath) {
@@ -617,7 +618,7 @@ function createProjectile(wallLocation, x, y, width, height) {
       x: x + 47,
       y: y + 50 + height / 2,
       speedX: 0,
-      speedY: -projectileSpeed,
+      speedY: -projectileSpeed - 16,
       width,
       height,
     });
@@ -663,13 +664,18 @@ function keyboardControlActions() {
     player.speedX += walkAcceleration;
     player.facingRight = true;
   }
-  if (keyPress.space || keyPress.up) {
+  if (keyPress.up) {
     if (player.onGround) {
       //this only lets you jump if you are on the ground
       player.speedY = player.speedY - playerJumpStrength;
       jumpTimer = 19; //this counts how many frames to have the jump last.
       player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
       frameIndex = 4;
+    }
+  }
+  if (keyPress.space) {
+    if (player.onGround) {
+      currentAnimationType = animationTypes.lazer;
     }
   }
 }
