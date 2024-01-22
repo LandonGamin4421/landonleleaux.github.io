@@ -19,6 +19,11 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url("https://cdnb.artstation.com/p/assets/images/images/063/321/915/large/farkhan-naji-cubi-cubi.jpg?1685277053");
+			-webkit-background-size: cover;
+    		-moz-background-size: cover;
+    		-o-background-size: cover;
+    		background-size: cover;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -48,8 +53,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -62,17 +68,49 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
+			var mouseX;
+			var mouseY;
+			var positionX = 0;
+			var positionY = 0;
+			var points = 0;
+			var speed = 10;
+			var speedY = 10;
+			var boardHeight = jQuery(window).height(); 
+			var randNum;
+			var colorStr = "rgb(50, 25, 250)";
 
-			
+			function getRandomColor(){
+				var randomNumberBetween0and10R = Math.random() * 255;
+				var randomNumberBetween0and10G = Math.random() * 255;
+				var randomNumberBetween0and10B = Math.random() * 255;
+				colorStr = "rgb(" + randomNumberBetween0and10R + ", " + randomNumberBetween0and10G + ", " + randomNumberBetween0and10B + ")";
+				box.css('background-color', colorStr);
+
+			}
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				
-
+				//code to increase positionX by 10
+				randNum = Math.random() * boardHeight;
+				positionX = positionX + speed;
+				positionY = positionY + speedY;
+				moveBoxTo(positionX, positionY);
+				if (positionX > boardWidth) {
+					speed = -speed;
+				}
+				if (positionX < 0) {
+					speed = -speed;
+				}
+				if (positionY > boardHeight) {
+					speedY = -speedY;
+				}
+				if (positionY < 0) {
+					speedY = -speedY;
+				}
+				box.css('background-color', colorStr);
 			};
 
 			/* 
@@ -81,10 +119,23 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
+				points = points + 1;
+				positionX = randNum;
+				positionY = randNum;
+				if (points % 3 === 0) {
+					if (speed > 0) {
+					speed = speed + 3;
+					}
+					else {
+					speed = speed -3;
+					}
+				}
+				getRandomColor();
+				changeBoxText(points);
 
 
 			};
+			
 		})();
 	</script>
 </body>

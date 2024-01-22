@@ -1,5 +1,4 @@
 body {
-    background: rgb(96, 137, 141);
     color: rgb(45, 45, 45);
     padding: 10px;
     font-family: arial;
@@ -42,6 +41,7 @@ a {
 main {
     background: rgb(245, 238, 219);
     display: flex;
+    
 }
 .sidebar {
     margin-right: 25px;
