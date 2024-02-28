@@ -1,0 +1,8 @@
+body {
+    background: url("https://global.discourse-cdn.com/brave/original/3X/0/5/05ab24246ec26614fa27106953bbf7fcaa83ebae.gif") no-repeat center center fixed;
+    background-color: #cccccc;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
