@@ -26,10 +26,10 @@ var init = function (window) {
         // TODO 2 : Create a function that draws a circle 
         function drawCircle() {
             // Code to draw a circle
-            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
-            physikz.addRandomVelocity(circle, canvas, 2, 2); // added arguments to change speed
-            view.addChild(circle);
-            circles.push(circle);
+            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2); //makes random circles on the canvas
+            physikz.addRandomVelocity(circle, canvas, 2, 2); // added arguments to change speed, also changes velocity
+            view.addChild(circle); //makes a circle a child of view so it's visible on screen
+            circles.push(circle); //saves a circle to the circles array
         }
 
         // TODO 3 / 7 : Call the drawCircle() function 
@@ -82,8 +82,8 @@ var init = function (window) {
             // TODO 9 : Iterate over the array
             //updates the circle positions and checks them with a loop
             for (var i = 0; i < circles.length; i++) {
-                physikz.updatePosition(circles[i]);
-                game.checkCirclePosition(circles[i]);
+                physikz.updatePosition(circles[i]);  // changes the velocity of the circles
+                game.checkCirclePosition(circles[i]); //checks the position of circles in relation to the canvas edges
             }
             
         }
@@ -96,7 +96,7 @@ var init = function (window) {
 
         game.checkCirclePosition = function(circle) {
 
-            //did these for the challenge
+            //did these for the challenge, they make the screen checks more smooth and accurate by checking the circle edges instead of the middle of the circle
             var rightEdge = circle.x + circle.radius;
             var leftEdge = circle.x - circle.radius;
             var topEdge = circle.y - circle.radius;
