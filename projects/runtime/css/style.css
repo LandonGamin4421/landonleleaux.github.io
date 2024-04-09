@@ -4,6 +4,7 @@ body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-image: url("https://d31sxl6qgne2yj.cloudfront.net/wordpress/wp-content/uploads/20190102094851/Minecraft-Dirt-Block.jpg");
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
