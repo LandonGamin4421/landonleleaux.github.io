@@ -49,6 +49,12 @@ var background = function (window) {
             
             // TODO 2: - Add a moon and starfield
 
+            moon = draw.bitmap("img/moon.png"); //the variable moon holds an image of the moon
+            moon.x = canvasWidth-1900; //determines x value of moon
+            moon.y = groundY-500; //determines y value of moon
+            moon.scaleX = 1.5; //determines the horizontal scale of the moon
+            moon.scaleY = 1.5; //determines the vertical scale of the moon 
+            background.addChild(moon); //adds the moon variable as a child of the background
             
             for (var i = 0; i < 100; i++){
                 var star = draw.bitmap("img/star.png"); //creates a variable to hold circle data
@@ -59,12 +65,6 @@ var background = function (window) {
             }
 
             
-            moon = draw.bitmap("img/moon.png"); //the variable moon holds an image of the moon
-            moon.x = canvasWidth-1900; //determines x value of moon
-            moon.y = groundY-500; //determines y value of moon
-            moon.scaleX = 1.5; //determines the horizontal scale of the moon
-            moon.scaleY = 1.5; //determines the vertical scale of the moon 
-            background.addChild(moon); //adds the moon variable as a child of the background
 
             mountain1 = draw.bitmap("img/mountain1.png"); //draws a mountain
             mountain1.x = canvasWidth-1500; //determines the x value of the mountain

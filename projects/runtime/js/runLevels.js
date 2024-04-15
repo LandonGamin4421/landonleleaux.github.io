@@ -14,7 +14,7 @@ var runLevels = function (window) {
     var levelData = window.opspark.levelData;
 
     // set this to true or false depending on if you want to see hitzones
-    game.setDebugMode(true);
+    game.setDebugMode(false);
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
@@ -84,6 +84,9 @@ var runLevels = function (window) {
       marker.velocityX = -2; //changes the speed of the marker
       marker.onPlayerCollision = function () {
         startLevel(); //plays the next level when touched by the player
+      };
+      marker.onProjectileCollision = function () {
+        startLevel(); //plays the next level when touched by the projectiles
       };
     }
     function startLevel() {
