@@ -34,8 +34,9 @@ var background = function (window) {
         var moon;
         var mountain1;
         var tree2;
+        var tree3;
         var stars = [];
-        var buildings = [];
+        // var buildings = [];
       
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -74,12 +75,19 @@ var background = function (window) {
             mountain1.scaleY = 1.75; //changes the mountain size
             background.addChild(mountain1); //adds the mountain as a child of the background
 
-            tree2 = draw.bitmap("img/tree2.png"); //draws a mountain
-            tree2.x = canvasWidth-1500; //determines the x value of the mountain
-            tree2.y = groundY-354; //determines the y value of the mountain
-            tree2.scaleX = 1.1; //changes the mountain size
-            tree2.scaleY = 1.1; //changes the mountain size
-            background.addChild(tree2); //adds the mountain as a child of the background
+            tree2 = draw.bitmap("img/tree2.png"); //draws trees
+            tree2.x = canvasWidth-1500; //determines the x value of the trees
+            tree2.y = groundY-354; //determines the y value of the trees
+            tree2.scaleX = 1.1; //changes the tree size
+            tree2.scaleY = 1.1; //changes the tree size
+            background.addChild(tree2); //adds the trees as a child of the background
+
+            tree3 = draw.bitmap("img/tree3.png"); //draws trees
+            tree3.x = canvasWidth-1500; //determines the x value of the trees
+            tree3.y = groundY-384; //determines the y value of the trees
+            tree3.scaleX = 1.2; //changes the tree size
+            tree3.scaleY = 1.2; //changes the tree size
+            background.addChild(tree3); //adds the trees as a child of the background
             
 
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
@@ -116,13 +124,17 @@ var background = function (window) {
             tree.x = tree.x - 7; //moves the tree left
             mountain1.x -= 0.2; //moves the mountain left
             tree2.x -=0.5; //moves the rear trees left
+            tree3.x -=3; //moves the mid trees left
             moon.x += 0.05; //moves the moon right
 
             if (tree.x < -200) {
-                tree.x = canvasWidth; //makes the tree reappear on the right side
+                tree.x = canvasWidth; //makes the front tree reappear on the right side
             }
             if (tree2.x < -1000) {
-                tree2.x = canvasWidth; //makes the big trees reappear on the right side
+                tree2.x = canvasWidth; //makes the rear trees reappear on the right side
+            }
+            if (tree3.x < -1000) {
+                tree3.x = canvasWidth; //makes the rear trees reappear on the right side
             }
             
             // TODO 4: Part 2 - Parallax
