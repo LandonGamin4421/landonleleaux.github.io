@@ -1,0 +1,37 @@
+
+body {
+  background-color: black;
+}
+
+#board {
+  width: 760px;
+  height: 400px;
+  border: 10px solid brown;
+  background-image: url("https://i.ytimg.com/vi/LSZVYVRuDs8/maxresdefault.jpg")
+}
+
+#score, #highScore {
+  color: white;
+}
+
+.snake, .apple {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  user-select: none;
+}
+
+.snake {
+  background-color: purple;
+  z-index: 2;
+}
+
+#snake-head {
+  background-color: pink;
+}
+
+.apple {
+  background-color: green;
+  z-index: 1;
+}
