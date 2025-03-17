@@ -35,7 +35,7 @@ function runProgram(){
 
   var leftPaddle = GameItem("#leftPaddle", 0, 0)
   var rightPaddle = GameItem("#rightPaddle", 0, 0)
-  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1) )
+  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1),0 )
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -57,6 +57,7 @@ function runProgram(){
     updateGameItem(rightPaddle);
     drawGameItem(ball);
     updateGameItem(ball);
+    checkBoundaries(ball);
   }
   
   /* 
@@ -102,6 +103,20 @@ function runProgram(){
   }
 
   //check boundaries of paddles
+  function checkBoundaries(obj){
+    if(obj.x > BOARD_WIDTH - obj.width){
+      obj.x = BOARD_WIDTH/2 - obj.width/2;
+    }
+    if(obj.x < 0){
+      obj.x = BOARD_WIDTH/2 - obj.width/2;
+    }
+    if(obj.y > BOARD_HEIGHT - obj.height){
+      obj.y = BOARD_HEIGHT/2 - obj.height/2;
+    }
+    if(obj.y < 0){
+      obj.y = BOARD_HEIGHT/2 - obj.height/2;
+    }
+  }
   //handle what happens when the ball hits the walls
   //handle what happens when the ball hits the handles
   //handle what happens when someone wins
