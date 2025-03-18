@@ -35,7 +35,7 @@ function runProgram(){
 
   var leftPaddle = GameItem("#leftPaddle", 0, 0)
   var rightPaddle = GameItem("#rightPaddle", 0, 0)
-  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1),0 )
+  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -58,6 +58,8 @@ function runProgram(){
     drawGameItem(ball);
     updateGameItem(ball);
     checkBoundaries(ball);
+    wallBounce(ball);
+    paddleCollision(ball)
   }
   
   /* 
@@ -104,21 +106,35 @@ function runProgram(){
 
   //check boundaries of paddles
   function checkBoundaries(obj){
-    if(obj.x > BOARD_WIDTH - obj.width){
+    if(obj.x > BOARD_WIDTH - obj.width || obj.x < 0){
       obj.x = BOARD_WIDTH/2 - obj.width/2;
-    }
-    if(obj.x < 0){
-      obj.x = BOARD_WIDTH/2 - obj.width/2;
-    }
-    if(obj.y > BOARD_HEIGHT - obj.height){
-      obj.y = BOARD_HEIGHT/2 - obj.height/2;
-    }
-    if(obj.y < 0){
-      obj.y = BOARD_HEIGHT/2 - obj.height/2;
+      obj.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+      obj.speedY = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
     }
   }
+
   //handle what happens when the ball hits the walls
-  //handle what happens when the ball hits the handles
+  function wallBounce(obj){
+    if(obj.y > BOARD_HEIGHT - obj.height || obj.y < 0){
+      obj.speedY = -obj.speedY;
+      if (obj.speedX < 0){
+        obj.speedX -= 1;
+      }
+      if (obj.speedX > 0){
+        obj.speedX += 1;
+      }
+    }
+  }
+
+  //handle what happens when the ball hits the paddles
+  function paddleCollision(obj){
+    if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
+      obj.speedX = -obj.speedX;
+    }
+    if(obj.x + obj.width > rightPaddle.x && obj.y > rightPaddle.y && obj.y < rightPaddle.y + rightPaddle.height){
+      obj.speedX = -obj.speedX;
+    }
+  }
   //handle what happens when someone wins
   //handle the points
   //handle resetting the game
