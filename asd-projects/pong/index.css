@@ -35,3 +35,24 @@ body {
   left: 330px;
   top: 210px;
 }
+#score1 {
+  color: white;
+  font-size: 40px;
+  left: 50px;
+  top: 210px;
+  position: absolute;
+}
+#score2 {
+  color: white;
+  font-size: 40px;
+  left: 650px;
+  top: 210px;
+  position: absolute;
+}
+#winMessage {
+  color: white;
+  font-size: 40px;
+  left: 200px;
+  top: 210px;
+  position: absolute;
+}

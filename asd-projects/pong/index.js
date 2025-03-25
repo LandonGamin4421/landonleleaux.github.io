@@ -32,11 +32,13 @@ function runProgram(){
     }
     return objInstance;
   }
-
+  var message;
+  var score1 = 0;
+  var score2 = 0;
   var leftPaddle = GameItem("#leftPaddle", 0, 0)
   var rightPaddle = GameItem("#rightPaddle", 0, 0)
   var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
-
+  
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
@@ -55,11 +57,17 @@ function runProgram(){
     updateGameItem(leftPaddle);
     drawGameItem(rightPaddle);
     updateGameItem(rightPaddle);
+    drawGameItem(score1);
+    updateGameItem(score1);
+    drawGameItem(score2);
+    updateGameItem(score2);
     drawGameItem(ball);
     updateGameItem(ball);
+    pointHandler(ball);
     checkBoundaries(ball);
     wallBounce(ball);
-    paddleCollision(ball)
+    paddleCollision(ball);
+    winCondition();
   }
   
   /* 
@@ -135,8 +143,29 @@ function runProgram(){
       obj.speedX = -obj.speedX;
     }
   }
-  //handle what happens when someone wins
   //handle the points
+  function pointHandler(obj){
+    if(obj.x > BOARD_WIDTH - obj.width){
+      score1 +=1;
+    }
+    if(obj.x < 0){
+      score2 +=1;
+    }
+    $("#score1").text(score1);
+    $("#score2").text(score2);
+  }
+  //handle what happens when someone wins
+  function winCondition(){
+    if(score1 === 2){
+      message = "PLAYER ONE WINS!!!"
+      endGame();
+    }
+    if(score2 === 2){
+      message = "PLAYER TWO WINS!!!"
+      endGame();
+    }
+    $("#winMessage").text(message);
+  }
   //handle resetting the game
   function endGame() {
     // stop the interval timer
