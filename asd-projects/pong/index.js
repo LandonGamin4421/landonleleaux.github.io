@@ -113,6 +113,7 @@ function runProgram(){
     obj.x += obj.speedX;
     obj.y += obj.speedY;
   }
+  //prevents the paddles from escaping the board
   function paddleWallCollision(obj){
     if(obj.y > BOARD_HEIGHT-obj.height){
       obj.speedY = 0;
