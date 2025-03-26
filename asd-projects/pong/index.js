@@ -55,8 +55,10 @@ function runProgram(){
   function newFrame() {
     drawGameItem(leftPaddle);
     updateGameItem(leftPaddle);
+    paddleWallCollision(leftPaddle);
     drawGameItem(rightPaddle);
     updateGameItem(rightPaddle);
+    paddleWallCollision(rightPaddle);
     drawGameItem(score1);
     updateGameItem(score1);
     drawGameItem(score2);
@@ -111,7 +113,16 @@ function runProgram(){
     obj.x += obj.speedX;
     obj.y += obj.speedY;
   }
-
+  function paddleWallCollision(obj){
+    if(obj.y > BOARD_HEIGHT-obj.height){
+      obj.speedY = 0;
+      obj.y = BOARD_HEIGHT-obj.height;
+    }
+    if(obj.y < 0){
+      obj.speedY = 0;
+      obj.y = 0;
+    }
+  }
   //check boundaries of paddles
   function checkBoundaries(obj){
     if(obj.x > BOARD_WIDTH - obj.width || obj.x < 0){
@@ -156,11 +167,11 @@ function runProgram(){
   }
   //handle what happens when someone wins
   function winCondition(){
-    if(score1 === 2){
+    if(score1 === 15){
       message = "PLAYER ONE WINS!!!"
       endGame();
     }
-    if(score2 === 2){
+    if(score2 === 15){
       message = "PLAYER TWO WINS!!!"
       endGame();
     }
@@ -168,9 +179,9 @@ function runProgram(){
   }
   //handle resetting the game
   function endGame() {
+    $("#endGameButton").css('opacity', 1)
     // stop the interval timer
     clearInterval(interval);
-
     // turn off event handlers
     $(document).off();
   }

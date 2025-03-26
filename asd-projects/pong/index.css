@@ -56,3 +56,11 @@ body {
   top: 210px;
   position: absolute;
 }
+#endGameButton {
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  left: 320px;
+  top: 310px;
+  opacity: 0;
+}
