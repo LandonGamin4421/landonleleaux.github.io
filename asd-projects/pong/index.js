@@ -70,6 +70,7 @@ function runProgram(){
     wallBounce(ball);
     paddleCollision(ball);
     winCondition();
+    //changeColor(ball);
   }
   
   /* 
@@ -178,6 +179,18 @@ function runProgram(){
     }
     $("#winMessage").text(message);
   }
+
+  /* an attempt to make all the colors change when the ball hits a paddle
+  function changeColor(obj){
+    if(paddleCollision(obj) === true){
+      var randomNum = Math. floor(Math. random() * 3)
+      if(randomNum === 1){
+        $(obj.id).css("border-color", "orange");
+      }
+    }
+  }
+  */
+  
   //handle resetting the game
   function endGame() {
     $("#endGameButton").css('opacity', 1)

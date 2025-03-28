@@ -12,6 +12,12 @@ body {
   position: relative;
   margin: auto;
 }
+#centerLine {
+  left: 359px;
+  border: 1px dashed lime;
+  height:479px;
+  position:absolute;
+}
 .paddle {
   width: 25px;
   height: 100px;
