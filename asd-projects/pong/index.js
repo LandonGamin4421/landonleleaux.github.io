@@ -70,7 +70,6 @@ function runProgram(){
     wallBounce(ball);
     paddleCollision(ball);
     winCondition();
-    //changeColor(ball);
   }
   
   /* 
@@ -151,9 +150,15 @@ function runProgram(){
   function paddleCollision(obj){
     if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
       obj.speedX = -obj.speedX;
+      changeColor(ball);
+      changeColor(rightPaddle);
+      changeColor(leftPaddle);
     }
     if(obj.x + obj.width > rightPaddle.x && obj.y > rightPaddle.y && obj.y < rightPaddle.y + rightPaddle.height){
       obj.speedX = -obj.speedX;
+      changeColor(ball);
+      changeColor(rightPaddle);
+      changeColor(leftPaddle);
     }
   }
   //handle the points
@@ -180,16 +185,16 @@ function runProgram(){
     $("#winMessage").text(message);
   }
 
-  /* an attempt to make all the colors change when the ball hits a paddle
+  // an attempt to make all the colors change when the ball hits a paddle
   function changeColor(obj){
-    if(paddleCollision(obj) === true){
-      var randomNum = Math. floor(Math. random() * 3)
-      if(randomNum === 1){
-        $(obj.id).css("border-color", "orange");
-      }
+    var randomNum = Math. floor(Math. random() * 2)
+    if(randomNum === 1){
+      $(obj.id).css("border-color", "orange");
+    }
+    if(randomNum === 2){
+      $(obj.id).css("border-color", "lime");
     }
   }
-  */
   
   //handle resetting the game
   function endGame() {
