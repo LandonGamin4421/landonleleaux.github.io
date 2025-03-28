@@ -1,14 +1,16 @@
 
 body {
-  background-color: darkgreen;
+  background-color: black;
 }
 
 #board {
+  top: 200px;
   width: 720px;
   height: 480px;
-  border: 1px solid white;
+  border: 1px solid lime;
   background-color: black;
   position: relative;
+  margin: auto;
 }
 .paddle {
   width: 25px;
@@ -17,17 +19,20 @@ body {
   position: absolute;
 }
 #leftPaddle {
-  background-color: white;
+  border: 2px solid lime;
+  background-color: black;
   left: 10px;
   top: 180px;
 }
 #rightPaddle {
-  background-color: white;
+  border: 2px solid lime;
+  background-color: black;
   left: 685px;
   top: 180px;
 }
 #ball {
-  background-color: wheat;
+  border: 3px solid lime;
+  background-color: black;
   width: 30px;
   height: 30px;
   border-radius: 50px;
