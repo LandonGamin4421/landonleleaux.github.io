@@ -32,13 +32,15 @@ function runProgram(){
     }
     return objInstance;
   }
+  var numCount = 1;
   var message;
   var score1 = 0;
   var score2 = 0;
-  var leftPaddle = GameItem("#leftPaddle", 0, 0)
-  var rightPaddle = GameItem("#rightPaddle", 0, 0)
-  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
-  
+  var leftPaddle = GameItem("#leftPaddle", 0, 0);
+  var rightPaddle = GameItem("#rightPaddle", 0, 0);
+  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1));
+  var board = GameItem("#board", 0, 0);
+  var centerLine = GameItem("#centerLine", 0, 0);
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
@@ -150,15 +152,21 @@ function runProgram(){
   function paddleCollision(obj){
     if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
       obj.speedX = -obj.speedX;
+      numRandomizer();
       changeColor(ball);
       changeColor(rightPaddle);
       changeColor(leftPaddle);
+      changeColor(board);
+      changeColor(centerLine);
     }
     if(obj.x + obj.width > rightPaddle.x && obj.y > rightPaddle.y && obj.y < rightPaddle.y + rightPaddle.height){
       obj.speedX = -obj.speedX;
+      numRandomizer();
       changeColor(ball);
       changeColor(rightPaddle);
       changeColor(leftPaddle);
+      changeColor(board);
+      changeColor(centerLine);
     }
   }
   //handle the points
@@ -187,13 +195,35 @@ function runProgram(){
 
   // an attempt to make all the colors change when the ball hits a paddle
   function changeColor(obj){
-    var randomNum = Math. floor(Math. random() * 2)
-    if(randomNum === 1){
-      $(obj.id).css("border-color", "orange");
-    }
-    if(randomNum === 2){
+    if(numCount === 1){
       $(obj.id).css("border-color", "lime");
     }
+    if(numCount === 2){
+      $(obj.id).css("border-color", "orange");
+    }
+    if(numCount === 3){
+      $(obj.id).css("border-color", "#FF10F0");
+    }
+    if(numCount === 4){
+      $(obj.id).css("border-color", "#FFFF00");
+    }
+    if(numCount === 5){
+      $(obj.id).css("border-color", "#00FFFF");
+    }
+    if(numCount === 6){
+      $(obj.id).css("border-color", "#FF3131");
+    }
+  }
+
+  //creates a random number
+  function numRandomizer(){
+    if (numCount < 7){
+      numCount++;
+    }
+    if (numCount === 7){
+      numCount = 1;
+    }
+    return numCount;
   }
   
   //handle resetting the game
