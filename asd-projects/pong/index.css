@@ -2,7 +2,19 @@
 body {
   background-color: black;
 }
-
+.strobe {
+  width: 100px;
+  height: 100px;
+  color: red; /* Initial color */
+  animation: strobe 2s infinite; /* Animation name, duration, and repeat */
+}
+@keyframes strobe {
+  0% { color: red; } /* First color */
+  25% { color: lime; } /* Second color */
+  50% { color: cyan; } /* Third color */
+  75% { color: yellow; } /* Fourth color */
+  100% { color: red; } /* Return to first color */
+}
 #board {
   top: 200px;
   width: 720px;

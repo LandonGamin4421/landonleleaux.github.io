@@ -152,7 +152,8 @@ function runProgram(){
   function paddleCollision(obj){
     if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
       obj.speedX = -obj.speedX;
-      numRandomizer();
+      numCounter();
+      
       changeColor(ball);
       changeColor(rightPaddle);
       changeColor(leftPaddle);
@@ -161,7 +162,7 @@ function runProgram(){
     }
     if(obj.x + obj.width > rightPaddle.x && obj.y > rightPaddle.y && obj.y < rightPaddle.y + rightPaddle.height){
       obj.speedX = -obj.speedX;
-      numRandomizer();
+      numCounter();
       changeColor(ball);
       changeColor(rightPaddle);
       changeColor(leftPaddle);
@@ -215,8 +216,8 @@ function runProgram(){
     }
   }
 
-  //creates a random number
-  function numRandomizer(){
+  //counts from 1 to 6
+  function numCounter(){
     if (numCount < 7){
       numCount++;
     }
