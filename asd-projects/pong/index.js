@@ -20,6 +20,8 @@ function runProgram(){
     "UP": 38,
     "DOWN": 40
   }
+
+  //factory function that allows for game item objects to be created with ease
   function GameItem(id, speedX, speedY){
     var objInstance = {
       id: id,
@@ -33,9 +35,13 @@ function runProgram(){
     return objInstance;
   }
   var numCount = 1;
+
+  //score variables
   var message;
   var score1 = 0;
   var score2 = 0;
+
+  //game items
   var leftPaddle = GameItem("#leftPaddle", 0, 0);
   var rightPaddle = GameItem("#rightPaddle", 0, 0);
   var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1));
@@ -126,7 +132,7 @@ function runProgram(){
       obj.y = 0;
     }
   }
-  //check boundaries of paddles
+  //check boundaries of the ball
   function checkBoundaries(obj){
     if(obj.x > BOARD_WIDTH - obj.width || obj.x < 0){
       obj.x = BOARD_WIDTH/2 - obj.width/2;
@@ -153,7 +159,6 @@ function runProgram(){
     if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
       obj.speedX = -obj.speedX;
       numCounter();
-      
       changeColor(ball);
       changeColor(rightPaddle);
       changeColor(leftPaddle);
@@ -170,7 +175,7 @@ function runProgram(){
       changeColor(centerLine);
     }
   }
-  //handle the points
+  //changes the score
   function pointHandler(obj){
     if(obj.x > BOARD_WIDTH - obj.width){
       score1 +=1;
@@ -194,7 +199,7 @@ function runProgram(){
     $("#winMessage").text(message);
   }
 
-  // an attempt to make all the colors change when the ball hits a paddle
+  //makes all the colors change
   function changeColor(obj){
     if(numCount === 1){
       $(obj.id).css("border-color", "lime");
@@ -216,7 +221,7 @@ function runProgram(){
     }
   }
 
-  //counts from 1 to 6
+  //counts from 1 to 6, to be used in the colorChange function
   function numCounter(){
     if (numCount < 7){
       numCount++;
