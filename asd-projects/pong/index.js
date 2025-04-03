@@ -12,6 +12,7 @@ function runProgram(){
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
+  let myAudio = document.querySelector('#audio')
   
   // Game Item Objects
   const KEY = {
@@ -158,6 +159,7 @@ function runProgram(){
   function paddleCollision(obj){
     if(obj.x < leftPaddle.x + leftPaddle.width && obj.y > leftPaddle.y && obj.y < leftPaddle.y + leftPaddle.height){
       obj.speedX = -obj.speedX;
+      myAudio.play()
       numCounter();
       changeColor(ball);
       changeColor(rightPaddle);
@@ -167,6 +169,7 @@ function runProgram(){
     }
     if(obj.x + obj.width > rightPaddle.x && obj.y > rightPaddle.y && obj.y < rightPaddle.y + rightPaddle.height){
       obj.speedX = -obj.speedX;
+      myAudio.play()
       numCounter();
       changeColor(ball);
       changeColor(rightPaddle);
