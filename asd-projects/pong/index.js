@@ -99,12 +99,16 @@ function runProgram(){
     }
   }
   function handleKeyUp(event){
-    if (event.which === KEY.W || KEY.UP){
+    if (event.which === KEY.W){
       leftPaddle.speedY = 0;
+    }
+    if(event.which === KEY.UP){
       rightPaddle.speedY = 0;
     }
-    if (event.which === KEY.S || KEY.DOWN){
+    if (event.which === KEY.S){
       leftPaddle.speedY = 0;
+    }
+    if(event.which === KEY.DOWN){
       rightPaddle.speedY = 0;
     }
   }
